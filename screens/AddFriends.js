@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard, Picker } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard, Picker, Button } from 'react-native';
 import { useFonts, Quicksand_700Bold, Quicksand_600SemiBold, Quicksand_400Regular } from '@expo-google-fonts/quicksand';
 
 
@@ -25,9 +25,18 @@ const AddFriends = props => {
         </View>
         <View style={styles.body}>
           <Text style={styles.instructionsText}>Fill out the form to connect (note, the questions are optional)</Text>
-          <Text style={styles.inputText}>Grade</Text>
-          <TextInput style={styles.inputTextStyles} textAlign={'center'} keyboardType="numeric" placeholder="grade #" />
-          <Text style={styles.inputText}>Gender</Text>
+          <View style={styles.card}>
+            <View style={{ marginBottom: '25%' }}>
+              <Text style={styles.inputLabel}>Grade</Text>
+              <TextInput style={styles.inputTextStyles} textAlign={'center'} keyboardType="numeric" placeholder="grade #" />
+            </View>
+            <View style={{ marginBottom: '25%' }}>
+              <Text style={styles.inputLabel}>Gender</Text>
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button color="black" title="Go" />
+            </View>
+          </View>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -52,8 +61,9 @@ const styles = StyleSheet.create({
     color: 'black'
   },
   body: {
+    alignItems: 'center',
     flex: 4,
-    width: '75%'
+    width: '90%'
   },
   inputText: {
     fontFamily: 'Quicksand_700Bold',
@@ -74,7 +84,31 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: 'black',
     height: 20,
-    marginBottom: 25
+    marginBottom: 25,
+    width: 50
+  },
+  card: {
+    width: '95%',
+    borderWidth: 2,
+    borderColor: '#e64951',
+    height: '80%',
+    borderRadius: 40,
+    backgroundColor: 'rgba(230, 73, 81, 0.1)',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  inputLabel: {
+    fontFamily: 'Quicksand_700Bold',
+    fontSize: 18,
+    marginBottom: 20,
+    //color: 'gray',
+    fontWeight: 'bold'
+  },
+  buttonContainer: {
+    width: '80%',
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius: 10
   }
 });
 
