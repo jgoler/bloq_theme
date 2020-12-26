@@ -42,7 +42,10 @@ const Welcome = props => {
           }} />
         </View>
         <View style={styles.button}>
-          <Button title="Sign Up" color="white" />
+          <Button title="Sign Up" color="white" onPress={() => {
+            props.navigation.push('Signup');
+          }}
+          />
         </View>
       </View>
     </View>
