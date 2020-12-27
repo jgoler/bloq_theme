@@ -73,8 +73,8 @@ const CreateProfile = props => {
               />
             </View>
             <View style={styles.buttonContainer}>
-              <Button color="#e64951" title="Sign Up" onPress={() => {
-                props.navigation.push('Home');
+              <Button color="#e64951" title="Create" onPress={() => {
+                props.navigation.push('FinishProfile');
               }} />
             </View>
 

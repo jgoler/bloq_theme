@@ -14,6 +14,7 @@ import Profile from './screens/Profile';
 import AddFriends from './screens/AddFriends';
 import Signup from './screens/Signup';
 import CreateProfile from './screens/CreateProfile';
+import FinishProfile from './screens/FinishProfile';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -69,6 +70,7 @@ function MainStackNavigator() {
       <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
       <Stack.Screen options={{ headerShown: false }} name="Signup" component={Signup} />
       <Stack.Screen options={{ headerShown: false }} name="CreateProfile" component={CreateProfile} />
+      <Stack.Screen options={{ headerShown: false }} name="FinishProfile" component={FinishProfile} />
       <Stack.Screen options={{ headerShown: false }} name="Chat" component={Chat} />
       <Stack.Screen options={{ headerShown: false }} name="Home" component={MainTabNavigator} />
     </Stack.Navigator>
