@@ -1,9 +1,22 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Button } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Button, Modal } from 'react-native';
 import { useFonts, Quicksand_700Bold, Quicksand_600SemiBold, Quicksand_400Regular } from '@expo-google-fonts/quicksand';
+import ImagePicker from '../components/ImagePicker';
 
 
 const FinishProfile = props => {
+  const [firstIsVisible, setFirstIsVisible] = useState(false);
+  const [secondIsVisible, setSecondIsVisible] = useState(false);
+
+  const displayFirstModal = show => {
+    setFirstIsVisible(show);
+  }
+
+  const displaySecondModal = show => {
+    setSecondIsVisible(show);
+  }
+
+
   let [fontsLoaded] = useFonts({
     Quicksand_700Bold,
     Quicksand_600SemiBold,
@@ -17,6 +30,39 @@ const FinishProfile = props => {
   }
   return (
     <View style={styles.container}>
+      <Modal
+        animationType={"slide"}
+        transparent={false}
+        visible={firstIsVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has now been closed");
+        }}
+      >
+        <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, }}>
+          <Button color="#e64951" title="close" onPress={() => {
+            displayFirstModal(!firstIsVisible);
+          }} />
+          <Text>Choose Main Picture Modal</Text>
+          <ImagePicker />
+        </View>
+      </Modal>
+      <Modal
+        animationType={"slide"}
+        transparent={false}
+        visible={secondIsVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has now been closed");
+        }}
+      >
+        <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, }}>
+          <Button color="#e64951" title="close" onPress={() => {
+            displaySecondModal(!secondIsVisible);
+          }} />
+          <Text>Profile Pictures Modal</Text>
+        </View>
+      </Modal>
+
+
       <View style={styles.headerContainer}>
         <Text style={styles.titleStyles}>Finish Profile</Text>
       </View>
@@ -27,12 +73,16 @@ const FinishProfile = props => {
         <View style={styles.inputContainer}>
 
           <View style={styles.buttonContainer}>
-            <Button color="#e64951" title="Choose Main Picture" />
+            <Button color="#e64951" title="Choose Main Picture" onPress={() => {
+              displayFirstModal(true);
+            }} />
           </View>
 
 
           <View style={styles.buttonContainer}>
-            <Button color="#e64951" title="Choose Profile Pictures" />
+            <Button color="#e64951" title="Choose Profile Pictures" onPress={() => {
+              displaySecondModal(true);
+            }} />
           </View>
         </View>
       </View>
