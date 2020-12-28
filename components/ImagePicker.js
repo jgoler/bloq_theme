@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Button, Text, Image, StyleSheet, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
 const ImgPicker = props => {
+  const [pickedImage, setPickedImage] = useState();
+
   const verifyPermissions = async () => {
     const result = await Permissions.askAsync(Permissions.CAMERA, Permissions.CAMERA_ROLL
     );
     if (result.status !== 'granted') {
-      Alert.alert("Insufficient permissions!", "You need to grant camera permissions to use this app.",
+      Alert.alert("Insufficient permissions!", "You need to grant camera and photo permissions to use this app.",
         [{ text: 'Okay' }]
       );
       return false;
@@ -21,35 +23,85 @@ const ImgPicker = props => {
     if (!hasPermission) {
       return;
     }
-    ImagePicker.launchCameraAsync();
+    const image = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      quality: 0.5
+    });
+    setPickedImage(image.uri);
   };
 
-  return <View style={styles.imagePicker}>
-    <View style={styles.imagePreview}>
-      <Text>No image picked yet.</Text>
-      <Image style={styles.image} />
+  const chooseImageHandler = async () => {
+    const hasPermission = await verifyPermissions();
+    if (!hasPermission) {
+      return;
+    }
+    const image = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 0.5
+    });
+    setPickedImage(image.uri);
+  }
+
+  return (
+    <View style={styles.imagePicker}>
+      <View style={styles.imagePreviewContainer}>
+        <View style={styles.imagePreview}>
+          {!pickedImage ? (
+            <Text>No image picked yet.</Text>
+          ) : (
+              <Image source={{ uri: pickedImage }} style={styles.image} />
+            )}
+        </View>
+      </View>
+      <View style={{ flex: 3, width: '100%', alignItems: 'center', justifyContent: 'center' }}>
+        <View style={styles.buttonContainer} >
+          <Button title="Take Image" color='white' onPress={takeImageHandler} />
+        </View>
+        <View style={styles.buttonContainer} >
+          <Button title="Choose Image from Photos" color='white' onPress={chooseImageHandler} />
+        </View>
+      </View>
     </View>
-    <Button title="Take Image" color='blue' onPress={takeImageHandler} />
-  </View>
+  );
 };
 
 const styles = StyleSheet.create({
   imagePicker: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  imagePreviewContainer: {
+    flex: 1,
+    width: '100%',
     alignItems: 'center'
   },
   imagePreview: {
-    width: '100%',
-    height: 200,
+    width: 94,
+    height: 94,
+    borderRadius: 47,
     marginBottom: 10,
+    borderColor: '#e64951',
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#ccc',
-    borderWidth: 1
+    borderWidth: 2,
   },
   image: {
-    width: '100%',
-    height: '100%'
-  }
+    width: 90,
+    height: 90,
+    borderRadius: 45
+  },
+  buttonContainer: {
+    width: '75%',
+    borderColor: '#e64951',
+    backgroundColor: '#e64951',
+    borderRadius: 10,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    marginBottom: 30
+  },
 });
 
 export default ImgPicker;

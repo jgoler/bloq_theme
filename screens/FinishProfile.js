@@ -38,12 +38,18 @@ const FinishProfile = props => {
           Alert.alert("Modal has now been closed");
         }}
       >
-        <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, }}>
-          <Button color="#e64951" title="close" onPress={() => {
-            displayFirstModal(!firstIsVisible);
-          }} />
-          <Text>Choose Main Picture Modal</Text>
-          <ImagePicker />
+        <View style={styles.container}>
+          <View style={styles.modalButtonStyles}>
+            <Button color="#e64951" title="save" onPress={() => {
+              displayFirstModal(!firstIsVisible);
+            }} />
+          </View>
+          <View style={styles.descriptionContainer}>
+            <Text style={styles.description}>Choose Main Profile Picture</Text>
+          </View>
+          <View style={styles.modalBody}>
+            <ImagePicker />
+          </View>
         </View>
       </Modal>
       <Modal
@@ -55,7 +61,7 @@ const FinishProfile = props => {
         }}
       >
         <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, }}>
-          <Button color="#e64951" title="close" onPress={() => {
+          <Button color="#e64951" title="save" onPress={() => {
             displaySecondModal(!secondIsVisible);
           }} />
           <Text>Profile Pictures Modal</Text>
@@ -145,7 +151,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     height: '35%'
-
+  },
+  modalButtonStyles: {
+    flex: 0.5,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    width: '80%',
+  },
+  descriptionContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  description: {
+    fontFamily: 'Quicksand_700Bold',
+    opacity: 0.7,
+    fontSize: 15,
+  },
+  modalBody: {
+    flex: 5,
+    width: '100%',
   }
 });
 
