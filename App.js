@@ -15,6 +15,7 @@ import AddFriends from './screens/AddFriends';
 import Signup from './screens/Signup';
 import CreateProfile from './screens/CreateProfile';
 import FinishProfile from './screens/FinishProfile';
+import LocationScreen from './screens/LocationScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

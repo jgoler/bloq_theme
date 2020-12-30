@@ -3,7 +3,7 @@ import { View, Button, Text, Image, StyleSheet, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
-const ImgPicker = props => {
+const ProfilePicPicker = props => {
   const [pickedImage, setPickedImage] = useState();
 
   const verifyPermissions = async () => {
@@ -48,7 +48,7 @@ const ImgPicker = props => {
       <View style={styles.imagePreviewContainer}>
         <View style={styles.imagePreview}>
           {!pickedImage ? (
-            <Image style={styles.image} source={{ uri: "https://uwosh.edu/deanofstudents/wp-content/uploads/sites/156/2019/02/profile-default.jpg" }} />
+            <Text style={styles.description}>Click to choose image</Text>
           ) : (
               <Image source={{ uri: pickedImage }} style={styles.image} />
             )}
@@ -69,19 +69,19 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   imagePreview: {
-    width: 94,
-    height: 94,
-    borderRadius: 47,
+    width: 250,
+    height: 350,
+    //borderRadius: 47,
     marginBottom: 10,
-    borderColor: '#e64951',
+    borderColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
   },
   image: {
-    width: 90,
-    height: 90,
-    borderRadius: 45
+    width: 246,
+    height: 346,
+    //borderRadius: 45
   },
   buttonContainer: {
     width: '75%',
@@ -96,15 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ImgPicker;
-
-/*
-<View style={{ flex: 3, width: '100%', alignItems: 'center', justifyContent: 'center' }}>
-        <View style={styles.buttonContainer} >
-          <Button title="Take Image" color='white' onPress={takeImageHandler} />
-        </View>
-        <View style={styles.buttonContainer} >
-          <Button title="Choose Image from Photos" color='white' onPress={chooseImageHandler} />
-        </View>
-      </View>
-      */
+export default ProfilePicPicker;
