@@ -6,15 +6,11 @@ import ImagePicker from '../components/ImagePicker';
 
 const FinishProfile = props => {
   const [firstIsVisible, setFirstIsVisible] = useState(false);
-  const [secondIsVisible, setSecondIsVisible] = useState(false);
 
   const displayFirstModal = show => {
     setFirstIsVisible(show);
   }
 
-  const displaySecondModal = show => {
-    setSecondIsVisible(show);
-  }
 
 
   let [fontsLoaded] = useFonts({
@@ -52,42 +48,23 @@ const FinishProfile = props => {
           </View>
         </View>
       </Modal>
-      <Modal
-        animationType={"slide"}
-        transparent={false}
-        visible={secondIsVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has now been closed");
-        }}
-      >
-        <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, }}>
-          <Button color="#e64951" title="save" onPress={() => {
-            displaySecondModal(!secondIsVisible);
-          }} />
-          <Text>Profile Pictures Modal</Text>
-        </View>
-      </Modal>
-
-
       <View style={styles.headerContainer}>
         <Text style={styles.titleStyles}>Finish Profile</Text>
       </View>
       <View style={styles.description}>
-        <Text style={styles.descriptionText}>Fill out the following form to start connecting</Text>
+        <Text style={styles.descriptionText}>Add pictures to your profile</Text>
       </View>
       <View style={styles.body}>
         <View style={styles.inputContainer}>
 
           <View style={styles.buttonContainer}>
-            <Button color="#e64951" title="Choose Main Picture" onPress={() => {
+            <Button color="#e64951" title="Choose Profile Pictures" onPress={() => {
               displayFirstModal(true);
             }} />
           </View>
-
-
           <View style={styles.buttonContainer}>
-            <Button color="#e64951" title="Choose Profile Pictures" onPress={() => {
-              displaySecondModal(true);
+            <Button color="#e64951" title="Done" onPress={() => {
+              props.navigation.push('Home');
             }} />
           </View>
         </View>

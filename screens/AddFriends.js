@@ -55,7 +55,7 @@ const AddFriends = props => {
         >
           <View style={styles.modalContainer}>
             <View style={styles.modalButtonStyles}>
-              <Button color="#e64951" title="done" onPress={() => {
+              <Button color="#e64951" title="close" onPress={() => {
                 displayModal(!isVisible);
               }} />
             </View>

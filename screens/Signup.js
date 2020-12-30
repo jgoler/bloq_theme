@@ -37,6 +37,7 @@ const Signup = props => {
           <TextInput
             style={{ height: 30, borderColor: '#e64951', borderBottomWidth: 2, marginBottom: 30 }}
             keyboardType="default"
+            autoCorrect={false}
           />
           <Text style={styles.inputText}>School</Text>
           <TextInput
@@ -48,7 +49,7 @@ const Signup = props => {
             style={{ height: 30, borderColor: '#e64951', borderBottomWidth: 2, marginBottom: 30 }}
             keyboardType="email-address"
             autoCapitalize="none"
-            secureTextEntry={true}
+            autoCorrect={false}
           />
           <Text style={styles.inputText}>Password</Text>
           <TextInput
