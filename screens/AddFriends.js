@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     borderColor: '#e64951',
     height: '85%',
     borderRadius: 40,
-    backgroundColor: 'rgba(230, 73, 81, 0.1)',
+    backgroundColor: 'rgba(230, 73, 81, 0.75)',
     alignItems: 'center',
     justifyContent: 'flex-start'
   },
