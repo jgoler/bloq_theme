@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    minHeight: "auto"
+    minHeight: "auto",
   },
   description: {
     flex: 0.3,
@@ -156,7 +156,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: '70%',
     padding: 10,
-    marginBottom: 30
+    marginBottom: 30,
+    borderRadius: 10
   }
 });
 

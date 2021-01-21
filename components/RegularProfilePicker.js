@@ -44,8 +44,8 @@ const ProfilePicPicker = props => {
   }
 
   return (
-    <View style={styles.imagePicker}>
-      <View style={styles.imagePreviewContainer}>
+    <View style={styles.regularImagePicker}>
+      <View style={styles.regularImagePreviewContainer}>
         <View style={styles.imagePreview}>
           {!pickedImage ? (
             <Text style={styles.description}>Click to choose image</Text>
@@ -59,16 +59,16 @@ const ProfilePicPicker = props => {
 };
 
 const styles = StyleSheet.create({
-  imagePicker: {
+  regularImagePicker: {
     alignItems: 'center',
     flex: 1,
   },
-  imagePreviewContainer: {
+  regularImagePreviewContainer: {
     flex: 1,
     width: '100%',
     alignItems: 'center'
   },
-  imagePreview: {
+  regularImagePreview: {
     width: 250,
     height: 350,
     //borderRadius: 47,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 2,
   },
-  image: {
+  regularImage: {
     width: 246,
     height: 346,
     //borderRadius: 45

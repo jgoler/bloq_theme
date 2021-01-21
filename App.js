@@ -66,7 +66,7 @@ function MainTabNavigator() {
 
 function MainStackNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator >
       <Stack.Screen options={{ headerShown: false }} name="Welcome" component={Welcome} />
       <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
       <Stack.Screen options={{ headerShown: false }} name="Signup" component={Signup} />

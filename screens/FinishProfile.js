@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Button, Modal, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Button, Modal, TouchableWithoutFeedback, Alert } from 'react-native';
 import { useFonts, Quicksand_700Bold, Quicksand_600SemiBold, Quicksand_400Regular } from '@expo-google-fonts/quicksand';
 import ImgPicker from '../components/ImagePicker';
 import ProfilePicPicker from '../components/RegularProfilePicker';
@@ -9,7 +9,15 @@ import * as ImagePicker from 'expo-image-picker';
 
 const FinishProfile = props => {
   const [pickedImage, setPickedImage] = useState();
+  const [secondPickedImage, setSecondPickedImage] = useState();
+  const [thirdPickedImage, setThirdPickedImage] = useState();
+  const [fourthPickedImage, setFourthPickedImage] = useState();
+  const [fifthPickedImage, setFifthPickedImage] = useState();
   const [isVisible, setIsVisible] = useState(false);
+  const [secondIsVisible, setSecondIsVisible] = useState(false);
+  const [thirdIsVisible, setThirdIsVisible] = useState(false);
+  const [fourthIsVisible, setFourthIsVisible] = useState(false);
+  const [fifthIsVisible, setFifthIsVisible] = useState(false);
 
   const verifyPermissions = async () => {
     const result = await Permissions.askAsync(Permissions.CAMERA, Permissions.CAMERA_ROLL
@@ -35,6 +43,54 @@ const FinishProfile = props => {
     setPickedImage(image.uri);
   };
 
+  const secondTakeImageHandler = async () => {
+    const hasPermission = await verifyPermissions();
+    if (!hasPermission) {
+      return;
+    }
+    const image = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      quality: 0.5
+    });
+    setSecondPickedImage(image.uri);
+  };
+
+  const thirdTakeImageHandler = async () => {
+    const hasPermission = await verifyPermissions();
+    if (!hasPermission) {
+      return;
+    }
+    const image = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      quality: 0.5
+    });
+    setThirdPickedImage(image.uri);
+  };
+
+  const fourthTakeImageHandler = async () => {
+    const hasPermission = await verifyPermissions();
+    if (!hasPermission) {
+      return;
+    }
+    const image = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      quality: 0.5
+    });
+    setFourthPickedImage(image.uri);
+  };
+
+  const fifthTakeImageHandler = async () => {
+    const hasPermission = await verifyPermissions();
+    if (!hasPermission) {
+      return;
+    }
+    const image = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      quality: 0.5
+    });
+    setFifthPickedImage(image.uri);
+  };
+
   const chooseImageHandler = async () => {
     const hasPermission = await verifyPermissions();
     if (!hasPermission) {
@@ -48,9 +104,78 @@ const FinishProfile = props => {
     setPickedImage(image.uri);
   }
 
+  const secondChooseImageHandler = async () => {
+    const hasPermission = await verifyPermissions();
+    if (!hasPermission) {
+      return;
+    }
+    const image = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 0.5
+    });
+    setSecondPickedImage(image.uri);
+  }
+
+  const thirdChooseImageHandler = async () => {
+    const hasPermission = await verifyPermissions();
+    if (!hasPermission) {
+      return;
+    }
+    const image = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 0.5
+    });
+    setThirdPickedImage(image.uri);
+  }
+
+  const fourthChooseImageHandler = async () => {
+    const hasPermission = await verifyPermissions();
+    if (!hasPermission) {
+      return;
+    }
+    const image = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 0.5
+    });
+    setFourthPickedImage(image.uri);
+  }
+
+  const fifthChooseImageHandler = async () => {
+    const hasPermission = await verifyPermissions();
+    if (!hasPermission) {
+      return;
+    }
+    const image = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 0.5
+    });
+    setFifthPickedImage(image.uri);
+  }
+
+
 
   const displayModal = show => {
     setIsVisible(show);
+  }
+
+  const displaySecondModal = show => {
+    setSecondIsVisible(show);
+  }
+
+  const displayThirdModal = show => {
+    setThirdIsVisible(show);
+  }
+
+  const displayFourthModal = show => {
+    setFourthIsVisible(show);
+  }
+
+  const displayFifthModal = show => {
+    setFifthIsVisible(show);
   }
 
 
@@ -70,7 +195,7 @@ const FinishProfile = props => {
           Alert.alert("Modal has now been closed");
         }}>
         <View style={styles.modalCloseButtonStyles}>
-          <Button color="#e64951" title="close" onPress={() => {
+          <Button color="#e64951" title="save" onPress={() => {
             displayModal(!isVisible);
           }} />
         </View>
@@ -95,6 +220,166 @@ const FinishProfile = props => {
               </View>
               <View style={styles.modalButton}>
                 <Button title="Choose Existing Photo" color='#e64951' onPress={chooseImageHandler} />
+              </View>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        animationType={"slide"}
+        transparent={false}
+        visible={secondIsVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has now been closed");
+        }}>
+        <View style={styles.modalCloseButtonStyles}>
+          <Button color="#e64951" title="save" onPress={() => {
+            displaySecondModal(!secondIsVisible);
+          }} />
+        </View>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalHeader}>
+            <Text style={styles.modalHeaderTitle}>Choose one of your profile picture</Text>
+          </View>
+
+          <View style={styles.regularImagePicker}>
+            <View style={styles.regularImagePreviewContainer}>
+              <View style={styles.regularImagePreview}>
+                {!secondPickedImage ? (
+                  <Text style={styles.description}>Choose image</Text>
+                ) : (
+                    <Image source={{ uri: secondPickedImage }} style={styles.regularImage} />
+                  )}
+              </View>
+            </View>
+          </View>
+          <View style={styles.modalBody}>
+            <View style={styles.buttonContainer}>
+              <View style={styles.modalButton}>
+                <Button title="Take Photo" color='#e64951' onPress={secondTakeImageHandler} />
+              </View>
+              <View style={styles.modalButton}>
+                <Button title="Choose Existing Photo" color='#e64951' onPress={secondChooseImageHandler} />
+              </View>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        animationType={"slide"}
+        transparent={false}
+        visible={thirdIsVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has now been closed");
+        }}>
+        <View style={styles.modalCloseButtonStyles}>
+          <Button color="#e64951" title="save" onPress={() => {
+            displayThirdModal(!thirdIsVisible);
+          }} />
+        </View>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalHeader}>
+            <Text style={styles.modalHeaderTitle}>Choose one of your profile picture</Text>
+          </View>
+
+          <View style={styles.regularImagePicker}>
+            <View style={styles.regularImagePreviewContainer}>
+              <View style={styles.regularImagePreview}>
+                {!thirdPickedImage ? (
+                  <Text style={styles.description}>Choose image</Text>
+                ) : (
+                    <Image source={{ uri: thirdPickedImage }} style={styles.regularImage} />
+                  )}
+              </View>
+            </View>
+          </View>
+          <View style={styles.modalBody}>
+            <View style={styles.buttonContainer}>
+              <View style={styles.modalButton}>
+                <Button title="Take Photo" color='#e64951' onPress={thirdTakeImageHandler} />
+              </View>
+              <View style={styles.modalButton}>
+                <Button title="Choose Existing Photo" color='#e64951' onPress={thirdChooseImageHandler} />
+              </View>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        animationType={"slide"}
+        transparent={false}
+        visible={fourthIsVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has now been closed");
+        }}>
+        <View style={styles.modalCloseButtonStyles}>
+          <Button color="#e64951" title="save" onPress={() => {
+            displayFourthModal(!fourthIsVisible);
+          }} />
+        </View>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalHeader}>
+            <Text style={styles.modalHeaderTitle}>Choose one of your profile picture</Text>
+          </View>
+
+          <View style={styles.regularImagePicker}>
+            <View style={styles.regularImagePreviewContainer}>
+              <View style={styles.regularImagePreview}>
+                {!fourthPickedImage ? (
+                  <Text style={styles.description}>Choose image</Text>
+                ) : (
+                    <Image source={{ uri: fourthPickedImage }} style={styles.regularImage} />
+                  )}
+              </View>
+            </View>
+          </View>
+          <View style={styles.modalBody}>
+            <View style={styles.buttonContainer}>
+              <View style={styles.modalButton}>
+                <Button title="Take Photo" color='#e64951' onPress={fourthTakeImageHandler} />
+              </View>
+              <View style={styles.modalButton}>
+                <Button title="Choose Existing Photo" color='#e64951' onPress={fourthChooseImageHandler} />
+              </View>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        animationType={"slide"}
+        transparent={false}
+        visible={fifthIsVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has now been closed");
+        }}>
+        <View style={styles.modalCloseButtonStyles}>
+          <Button color="#e64951" title="save" onPress={() => {
+            displayFifthModal(!fifthIsVisible);
+          }} />
+        </View>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalHeader}>
+            <Text style={styles.modalHeaderTitle}>Choose one of your profile picture</Text>
+          </View>
+
+          <View style={styles.regularImagePicker}>
+            <View style={styles.regularImagePreviewContainer}>
+              <View style={styles.regularImagePreview}>
+                {!fifthPickedImage ? (
+                  <Text style={styles.description}>Choose image</Text>
+                ) : (
+                    <Image source={{ uri: fifthPickedImage }} style={styles.regularImage} />
+                  )}
+              </View>
+            </View>
+          </View>
+          <View style={styles.modalBody}>
+            <View style={styles.buttonContainer}>
+              <View style={styles.modalButton}>
+                <Button title="Take Photo" color='#e64951' onPress={fifthTakeImageHandler} />
+              </View>
+              <View style={styles.modalButton}>
+                <Button title="Choose Existing Photo" color='#e64951' onPress={fifthChooseImageHandler} />
               </View>
             </View>
           </View>
@@ -127,14 +412,82 @@ const FinishProfile = props => {
             </View>
 
           </TouchableWithoutFeedback>
-          <ProfilePicPicker />
-          <ProfilePicPicker />
-          <ProfilePicPicker />
-          <ProfilePicPicker />
-          <ProfilePicPicker />
-          <Button color="#e64951" title="Done" onPress={() => {
-            props.navigation.push('Home');
-          }} />
+          <TouchableWithoutFeedback onPress={() => {
+            displaySecondModal(true);
+          }}>
+            <View>
+              <View style={styles.regularImagePicker}>
+                <View style={styles.regularImagePreviewContainer}>
+                  <View style={styles.regularImagePreview}>
+                    {!secondPickedImage ? (
+                      <Text style={styles.description}>Click to choose image</Text>
+                    ) : (
+                        <Image source={{ uri: secondPickedImage }} style={styles.regularImage} />
+                      )}
+                  </View>
+                </View>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => {
+            displayThirdModal(true);
+          }}>
+            <View>
+              <View style={styles.regularImagePicker}>
+                <View style={styles.regularImagePreviewContainer}>
+                  <View style={styles.regularImagePreview}>
+                    {!thirdPickedImage ? (
+                      <Text style={styles.description}>Click to choose image</Text>
+                    ) : (
+                        <Image source={{ uri: thirdPickedImage }} style={styles.regularImage} />
+                      )}
+                  </View>
+                </View>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => {
+            displayFourthModal(true);
+          }}>
+            <View>
+              <View style={styles.regularImagePicker}>
+                <View style={styles.regularImagePreviewContainer}>
+                  <View style={styles.regularImagePreview}>
+                    {!fourthPickedImage ? (
+                      <Text style={styles.description}>Click to choose image</Text>
+                    ) : (
+                        <Image source={{ uri: fourthPickedImage }} style={styles.regularImage} />
+                      )}
+                  </View>
+                </View>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => {
+            displayFifthModal(true);
+          }}>
+            <View>
+              <View style={styles.regularImagePicker}>
+                <View style={styles.regularImagePreviewContainer}>
+                  <View style={styles.regularImagePreview}>
+                    {!fifthPickedImage ? (
+                      <Text style={styles.description}>Click to choose image</Text>
+                    ) : (
+                        <Image source={{ uri: fifthPickedImage }} style={styles.regularImage} />
+                      )}
+                  </View>
+                </View>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+          <View style={styles.doneButtonContainer}>
+            <Button color="white" title="Done" onPress={() => {
+              props.navigation.push('Home');
+            }} />
+          </View>
+          <View style={{ height: 30 }}>
+
+          </View>
         </ScrollView>
       </View>
     </View >
@@ -200,7 +553,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   modalHeader: {
-    flex: 0.3,
+    flex: 0.5,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -234,13 +587,49 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'space-around',
-    height: '45%'
+    height: '70%'
   },
   modalCloseButtonStyles: {
     flex: 0.1,
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
     width: '80%',
+  },
+  regularImagePicker: {
+    alignItems: 'center',
+    flex: 8,
+  },
+  regularImagePreviewContainer: {
+    flex: 3,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  regularImagePreview: {
+    width: 250,
+    height: 350,
+    //borderRadius: 47,
+    marginBottom: 10,
+    borderColor: '#e64951',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+  },
+  regularImage: {
+    width: 246,
+    height: 346,
+    //borderRadius: 45
+  },
+  doneButtonContainer: {
+    width: '100%',
+    borderColor: '#e64951',
+    backgroundColor: '#e64951',
+    borderRadius: 10,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    marginBottom: 50
   }
 });
 
